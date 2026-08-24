@@ -1,0 +1,22 @@
+# Virtual Environment
+venv/
+.venv/
+env/
+
+# Python Cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Environment Variables (Sensitive)
+.env
+
+# SQLite Database
+state.db
+state.db-wal
+state.db-shm
+
+# IDE Settings
+.vscode/
+.idea/
