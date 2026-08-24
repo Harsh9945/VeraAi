@@ -16,6 +16,9 @@ That's it!
 Author: magicpin AI Challenge Team
 """
 
+import os
+import sys
+
 # =============================================================================
 # ██████  CONFIGURATION - EDIT THIS SECTION ██████
 # =============================================================================
@@ -27,7 +30,7 @@ BOT_URL = "http://127.0.0.1:8080"
 LLM_PROVIDER = "gemini"
 
 # Your API key (paste your key here)
-LLM_API_KEY = "AIzaSyDsYYT5xItKnxu0525Ff3QKahZ2PsK1L88"
+LLM_API_KEY = os.environ.get("GEMINI_API_KEY", "")
 
 # Model to use (leave empty for default, or specify like "gpt-4o", "claude-3-5-sonnet-20241022", etc.)
 LLM_MODEL = ""  # <-- Optional: specify model or leave empty for default
@@ -42,8 +45,6 @@ TEST_SCENARIO = "all"
 # ██████  END OF CONFIGURATION - DON'T EDIT BELOW THIS LINE ██████
 # =============================================================================
 
-import os
-import sys
 import json
 import time
 import re
