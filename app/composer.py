@@ -51,9 +51,17 @@ def _call_llm(system_prompt: str, user_prompt: str, temperature: float = 0.0, ma
             }
         }).encode("utf-8")
         req = urllib.request.Request(url, data=body, headers={"Content-Type": "application/json"})
-        with urllib.request.urlopen(req, timeout=30) as resp:
-            data = json.loads(resp.read().decode("utf-8"))
-            return data["candidates"][0]["content"]["parts"][0]["text"]
+        last_error = None
+        for attempt in range(3):
+            try:
+                with urllib.request.urlopen(req, timeout=12) as resp:
+                    data = json.loads(resp.read().decode("utf-8"))
+                    return data["candidates"][0]["content"]["parts"][0]["text"]
+            except Exception as e:
+                last_error = e
+                import time
+                time.sleep(1.0)
+        raise last_error
     else:
         client = _get_client()
         model_name = os.environ.get("LLM_MODEL", "claude-sonnet-4-6")
