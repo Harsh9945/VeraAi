@@ -42,6 +42,7 @@ def _now_iso() -> str:
 # ---------------------------------------------------------------------------
 
 @app.get("/v1/healthz")
+@app.head("/v1/healthz")
 async def healthz():
     return {
         "status": "ok",
